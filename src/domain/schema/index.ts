@@ -204,13 +204,15 @@ export type QueryLocationsByIdsArgs = {
   ids: Array<Scalars['ID']['input']>;
 };
 
+export type ShortCharacterFragment = { __typename?: 'Character', id?: string | null, name?: string | null, image?: string | null };
+
 export type GetCharactersQueryVariables = Exact<{
   page: Scalars['Int']['input'];
   name?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type GetCharactersQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', info?: { __typename?: 'Info', count?: number | null, prev?: number | null, next?: number | null } | null, results?: Array<{ __typename?: 'Character', name?: string | null, image?: string | null } | null> | null } | null };
+export type GetCharactersQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', info?: { __typename?: 'Info', count?: number | null, prev?: number | null, next?: number | null } | null, results?: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, image?: string | null } | null> | null } | null };
 
 export type GetOneCharacterQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -219,7 +221,13 @@ export type GetOneCharacterQueryVariables = Exact<{
 
 export type GetOneCharacterQuery = { __typename?: 'Query', character?: { __typename?: 'Character', id?: string | null, name?: string | null, status?: string | null, species?: string | null, type?: string | null, image?: string | null } | null };
 
-
+export const ShortCharacterFragmentDoc = gql`
+    fragment ShortCharacter on Character {
+  id
+  name
+  image
+}
+    `;
 export const GetCharactersDocument = gql`
     query GetCharacters($page: Int!, $name: String) {
   characters(page: $page, filter: {name: $name}) {
@@ -229,12 +237,11 @@ export const GetCharactersDocument = gql`
       next
     }
     results {
-      name
-      image
+      ...ShortCharacter
     }
   }
 }
-    `;
+    ${ShortCharacterFragmentDoc}`;
 
 /**
  * __useGetCharactersQuery__

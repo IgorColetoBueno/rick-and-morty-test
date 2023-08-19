@@ -5,19 +5,25 @@ import {
   GetCharactersQueryVariables,
 } from "../../../domain/schema";
 import { useCallback } from "react";
+import { useAppState } from "../../../presentation/store";
 
-const useGetCharacters = (variables: GetCharactersQueryVariables) => {
+const useGetCharacters = () => {
+  const name = useAppState((q) => q.home.name);
+
   const { fetchMore, ...response } = useQuery<
     GetCharactersQuery,
     GetCharactersQueryVariables
   >(GetCharactersDocument, {
-    variables,
+    variables: {
+      page: 1,
+      name: name,
+    },
   });
 
   const fetchNextPage = useCallback((page: number) => {
     fetchMore({
       variables: {
-        ...variables,
+        name,
         page,
       },
       updateQuery: (prev, { fetchMoreResult }) => {
