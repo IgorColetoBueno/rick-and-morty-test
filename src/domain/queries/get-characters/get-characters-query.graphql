@@ -1,0 +1,18 @@
+fragment ShortCharacter on Character {
+  id
+  name
+  image
+}
+
+query GetCharacters($page: Int!, $name: String) {
+  characters(page: $page, filter: { name: $name }) {
+    info {
+      count
+      prev
+      next
+    }
+    results {
+      ...ShortCharacter
+    }
+  }
+}
