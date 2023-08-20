@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
+
 import {
   GetOneCharacterQueryVariables,
   GetOneCharacterQuery,

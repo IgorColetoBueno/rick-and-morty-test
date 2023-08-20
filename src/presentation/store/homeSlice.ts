@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { GetCharactersQueryVariables } from "../../domain/schema";
-
 interface HomeState {
   name?: string;
+  isFetchingMore: boolean;
 }
-const initialState: HomeState = {};
+const initialState: HomeState = {
+  isFetchingMore: false,
+};
 
 const homeSlice = createSlice({
   name: "home",
@@ -14,9 +15,12 @@ const homeSlice = createSlice({
     changeFilter: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },
+    setFetchingMore: (state, action: PayloadAction<boolean>) => {
+      state.isFetchingMore = action.payload;
+    },
   },
 });
 
-export const { changeFilter } = homeSlice.actions;
+export const { changeFilter, setFetchingMore } = homeSlice.actions;
 
 export default homeSlice.reducer;

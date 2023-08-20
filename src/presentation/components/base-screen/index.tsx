@@ -39,7 +39,7 @@ const BaseScreen = ({
           bounces={false}
           overScrollMode="never"
           {...rest}
-          style={{ flex: 1 }}
+          style={{ flex: 1, backgroundColor: Theme.colors.black }}
         >
           {children}
         </Component>

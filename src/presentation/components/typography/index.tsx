@@ -1,31 +1,31 @@
 import { PropsWithChildren } from "react";
-import { StyleProp, Text, TextStyle } from "react-native";
+import { StyleProp, Text, TextProps, TextStyle } from "react-native";
 
 import Theme, { Color, Typography as TypographyType } from "../../theme";
 
-interface TypographyProps {
-  family?: "poppins" | "garamond";
-  weight?: "bold" | "regular" | "semibold";
+interface TypographyProps extends TextProps {
+  family?: "get_schwifty" | "garamond";
   size?: TypographyType;
   color?: Color;
 }
 
 const Typography = ({
-  family = "poppins",
-  weight = "regular",
+  family = "get_schwifty",
   children,
   size = "body",
   color = "black",
+  style: baseStyles,
 }: PropsWithChildren<TypographyProps>) => {
   const fontSizeStyle = Theme.typography[size];
 
   const style: StyleProp<TextStyle> = {
-    fontFamily: `${family}-${weight}`,
+    fontFamily: `${family}`,
     flexShrink: 1,
     color: Theme.colors[color],
+    letterSpacing: 5,
   };
 
-  return <Text style={[style, fontSizeStyle]}>{children}</Text>;
+  return <Text style={[style, fontSizeStyle, baseStyles]}>{children}</Text>;
 };
 
 export const TextH1 = ({
@@ -33,7 +33,7 @@ export const TextH1 = ({
   ...rest
 }: PropsWithChildren<TypographyProps>) => {
   return (
-    <Typography size="h1" family="garamond" weight="bold" {...rest}>
+    <Typography size="h1" family="garamond" {...rest}>
       {children}
     </Typography>
   );
@@ -44,7 +44,7 @@ export const TextH2 = ({
   ...rest
 }: PropsWithChildren<TypographyProps>) => {
   return (
-    <Typography size="h2" family="garamond" weight="semibold" {...rest}>
+    <Typography size="h2" family="garamond" {...rest}>
       {children}
     </Typography>
   );
@@ -55,7 +55,7 @@ export const TextH3 = ({
   ...rest
 }: PropsWithChildren<TypographyProps>) => {
   return (
-    <Typography size="h3" weight="semibold" {...rest}>
+    <Typography size="h3" {...rest}>
       {children}
     </Typography>
   );
@@ -66,7 +66,7 @@ export const TextH4 = ({
   ...rest
 }: PropsWithChildren<TypographyProps>) => {
   return (
-    <Typography size="h4" weight="semibold" {...rest}>
+    <Typography size="h4" {...rest}>
       {children}
     </Typography>
   );
@@ -77,7 +77,7 @@ export const TextBody2 = ({
   ...rest
 }: PropsWithChildren<TypographyProps>) => {
   return (
-    <Typography size="body2" weight="regular" {...rest}>
+    <Typography size="body2" {...rest}>
       {children}
     </Typography>
   );
@@ -88,7 +88,7 @@ export const TextBody = ({
   ...rest
 }: PropsWithChildren<TypographyProps>) => {
   return (
-    <Typography size="body" weight="regular" {...rest}>
+    <Typography size="body" {...rest}>
       {children}
     </Typography>
   );
