@@ -5,6 +5,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useCallback } from "react";
 import { Provider } from "react-redux";
+
 import apolloClient from "./src/config/graphql";
 import { MainStack } from "./src/presentation/navigation";
 import { RouteName } from "./src/presentation/navigation/route-names";
@@ -30,9 +31,9 @@ export default function App() {
   return (
     <Provider store={store}>
       <ApolloProvider client={apolloClient}>
-        <StatusBar style="auto" />
+        <StatusBar style="dark" translucent />
         <NavigationContainer onReady={onLayoutRootView}>
-          <MainStack.Navigator>
+          <MainStack.Navigator screenOptions={{ headerShown: false }}>
             <MainStack.Screen name={RouteName.Home} component={HomeScreen} />
             <MainStack.Screen
               name={RouteName.Detail}

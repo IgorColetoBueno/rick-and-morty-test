@@ -8,7 +8,8 @@ export type Color =
   | "light-gray"
   | "dark-gray"
   | "black"
-  | "yellow"
+  | "yellow-green"
+  | "moonstone"
   | "white";
 
 export type Spacing = "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
@@ -58,10 +59,11 @@ const Theme: ThemeProps = {
     "light-cyan": "#A8DADC",
     "light-gray": "#F1FAEE",
     "dark-gray": "#a0aab2",
-    yellow: "#ffb703",
+    "yellow-green": "#A6CE3B",
     blue: "#457B9D",
     red: "#E63946",
     white: "#FFF",
+    moonstone: "#39AEC0",
   },
 };
 

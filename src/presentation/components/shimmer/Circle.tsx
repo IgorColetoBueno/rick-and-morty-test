@@ -22,7 +22,7 @@ const ShimmerCircle = ({ opacity, size }: ShimmerCircleProps) => {
 
 const styles = StyleSheet.create({
   circle: {
-    backgroundColor: Theme.colors["dark-gray"],
+    backgroundColor: Theme.colors.black,
     borderRadius: 999,
   },
 });
