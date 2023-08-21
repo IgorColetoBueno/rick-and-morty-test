@@ -67,8 +67,4 @@ const Theme: ThemeProps = {
   },
 };
 
-export type ScaleSheetType<T> = {
-  [K in keyof T]: T[K] extends number ? number | string : T[K];
-};
-
 export default Theme;
