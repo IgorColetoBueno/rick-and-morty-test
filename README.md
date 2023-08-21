@@ -1,5 +1,13 @@
 # Rick and Morty
 
+## Demo
+
+https://github.com/IgorColetoBueno/rick-and-morty-test/assets/17251330/66a44143-4fc2-4fb4-9ba0-b09c332caeae
+
+https://github.com/IgorColetoBueno/rick-and-morty-test/assets/17251330/db919711-3f8a-41d0-a89b-6f45dd26503a
+
+
+
 ## Como executar
 
 - ```npm i```
