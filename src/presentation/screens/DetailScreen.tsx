@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, Platform, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import useGetOneCharacter from "../../data/queries/get-one-character";
@@ -100,7 +100,11 @@ const styles = StyleSheet.create({
   image: {
     borderRadius: 999,
   },
-  container: {},
+  container: {
+    paddingTop: Platform.select({
+      android: 10,
+    }),
+  },
 });
 
 export default DetailScreen;
