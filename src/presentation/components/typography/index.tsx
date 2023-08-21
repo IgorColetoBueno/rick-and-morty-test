@@ -4,7 +4,7 @@ import { StyleProp, Text, TextProps, TextStyle } from "react-native";
 import Theme, { Color, Typography as TypographyType } from "../../theme";
 
 interface TypographyProps extends TextProps {
-  family?: "get_schwifty" | "garamond";
+  family?: "get_schwifty" | "poppins";
   size?: TypographyType;
   color?: Color;
 }
@@ -33,7 +33,7 @@ export const TextH1 = ({
   ...rest
 }: PropsWithChildren<TypographyProps>) => {
   return (
-    <Typography size="h1" family="garamond" {...rest}>
+    <Typography size="h1" family="poppins" {...rest}>
       {children}
     </Typography>
   );
@@ -44,7 +44,7 @@ export const TextH2 = ({
   ...rest
 }: PropsWithChildren<TypographyProps>) => {
   return (
-    <Typography size="h2" family="garamond" {...rest}>
+    <Typography size="h2" family="poppins" {...rest}>
       {children}
     </Typography>
   );

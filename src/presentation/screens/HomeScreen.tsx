@@ -1,3 +1,4 @@
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Dimensions,
@@ -20,6 +21,8 @@ import Box, { Column } from "../components/flex";
 import SearchInput from "../components/search-input";
 import { TextH4 } from "../components/typography";
 import useDebounce from "../hooks/useDebounce";
+import { BaseStackParams } from "../navigation";
+import { RouteName } from "../navigation/route-names";
 import { useAppDispatch, useAppState } from "../store";
 import { changeFilter, setFetchingMore } from "../store/homeSlice";
 import Theme from "../theme";
@@ -36,6 +39,8 @@ const HomeScreen = () => {
   const [filterHeight, setFilterHeight] = useState(0);
   const scrollViewRef = useRef<ScrollView>(null);
   const ableToFetchNextPage = useRef(true);
+  const navigation =
+    useNavigation<NavigationProp<BaseStackParams, RouteName.Home>>();
 
   const handleScroll = async (
     event: NativeSyntheticEvent<NativeScrollEvent>,
@@ -116,22 +121,32 @@ const HomeScreen = () => {
               }}
             >
               <ScrollView
+                testID="scroll-view"
                 alwaysBounceVertical={false}
                 bounces={false}
                 overScrollMode="never"
                 style={styles.scrollView}
                 ref={scrollViewRef}
                 onScroll={handleScroll}
+                scrollEventThrottle={16}
               >
                 <Column gap={Theme.spacing.sm}>
                   {data?.characters?.results!.map((character) => (
                     <CharacterCard
                       key={`character-${character?.id}`}
                       character={character!}
-                      onPress={() => {}}
+                      onPress={() =>
+                        navigation.navigate(RouteName.Detail, {
+                          id: character?.id!,
+                        })
+                      }
                     />
                   ))}
-                  {isFetchingMore && <CardShimmer />}
+                  {isFetchingMore && (
+                    <View testID="loading">
+                      <CardShimmer quantity={[0]} />
+                    </View>
+                  )}
                   <View style={{ height: bottom + 50 }} />
                 </Column>
               </ScrollView>
@@ -139,7 +154,9 @@ const HomeScreen = () => {
           )}
           {loading && (
             <Box paddingHorizontal={Theme.spacing.md}>
-              <CardShimmer />
+              <View testID="loading">
+                <CardShimmer />
+              </View>
             </Box>
           )}
         </Column>
@@ -157,7 +174,7 @@ const styles = StyleSheet.create({
   backdrop: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: Theme.colors.white,
-    opacity: 0.4,
+    opacity: 0.5,
     zIndex: 1,
   },
 });

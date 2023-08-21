@@ -253,8 +253,10 @@ export type GetOneCharacterQuery = {
     name?: string | null;
     status?: string | null;
     species?: string | null;
-    type?: string | null;
     image?: string | null;
+    gender?: string | null;
+    origin?: { __typename?: "Location"; dimension?: string | null } | null;
+    location?: { __typename?: "Location"; dimension?: string | null } | null;
   } | null;
 };
 
@@ -339,8 +341,14 @@ export const GetOneCharacterDocument = gql`
       name
       status
       species
-      type
       image
+      gender
+      origin {
+        dimension
+      }
+      location {
+        dimension
+      }
     }
   }
 `;

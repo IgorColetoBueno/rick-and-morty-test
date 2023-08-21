@@ -22,7 +22,7 @@ const ShimmerSquare = ({ opacity, size }: ShimmerSquareProps) => {
 
 const styles = StyleSheet.create({
   square: {
-    backgroundColor: Theme.colors.black,
+    backgroundColor: Theme.colors["dark-gray"],
   },
 });
 

@@ -6,12 +6,12 @@ import ShimmerSquare from "../shimmer/Square";
 
 const numberOfTimes = new Array(6).fill(0);
 
-const CardShimmer = () => {
+const CardShimmer = ({ quantity = numberOfTimes }) => {
   const opacity = useShimmer();
 
   return (
     <Column gap={Theme.spacing.lg}>
-      {numberOfTimes.map((_, index) => (
+      {quantity.map((_, index) => (
         <Row key={`shimmer-${index}`} gap={Theme.spacing.sm}>
           <ShimmerSquare opacity={opacity} size={100} />
           <Column flex={1} gap={Theme.spacing.sm}>
