@@ -9,17 +9,17 @@ const useShimmer = () => {
       Animated.sequence([
         Animated.timing(shimmerOpacity, {
           toValue: 0.5,
-          duration: 1000,
+          duration: 300,
           useNativeDriver: true,
         }),
         Animated.timing(shimmerOpacity, {
-          toValue: 1,
-          duration: 1000,
+          toValue: 0.8,
+          duration: 300,
           useNativeDriver: true,
         }),
         Animated.timing(shimmerOpacity, {
           toValue: 0.5,
-          duration: 1000,
+          duration: 300,
           useNativeDriver: true,
         }),
       ]),

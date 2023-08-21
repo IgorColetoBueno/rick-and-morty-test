@@ -16,6 +16,7 @@ import { store } from "./src/presentation/store";
 export default function App() {
   const [fontsLoaded] = useFonts({
     get_schwifty: require("./src/assets/fonts/get_schwifty.ttf"),
+    poppins: require("./src/assets/fonts/Poppins-Regular.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {

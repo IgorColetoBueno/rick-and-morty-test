@@ -17,7 +17,7 @@ const ShimmerRectangle = ({ opacity }: ShimmerRectangleProps) => {
 
 const styles = StyleSheet.create({
   rectangle: {
-    backgroundColor: Theme.colors.black,
+    backgroundColor: Theme.colors["dark-gray"],
     flex: 1,
     borderRadius: Theme.spacing.xs,
   },
